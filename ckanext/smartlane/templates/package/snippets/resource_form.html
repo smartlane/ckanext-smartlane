@@ -5,6 +5,7 @@
 
 {% block basic_fields %}
   {{ super() }} 
+  
   {% block basic_fields_type %}
     <div class="control-group">
     {% set error = errors.type_id %}
@@ -16,5 +17,6 @@
       {% endfor %}
       </select> 
   {% endblock %}
+  
 {% endblock %}
 
