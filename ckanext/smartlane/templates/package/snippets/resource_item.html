@@ -70,7 +70,7 @@
   {% endblock %}
   {% block resource_item_analyze %}
 {% if not url_is_edit and res.available_analyses|length > 0 %}
-<div class="dropdown btn-group" style="right: 130px;">
+<div class="dropdown btn-group" style="right: 140px;">
 <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 <i class="icon-bar-chart"></i>
 {{ _('Analyze') }}
@@ -80,7 +80,9 @@
 {% block resource_item_analyze_links %}
 {% for analysis in res.available_analyses %}
 <li>
-<a href="http://smartlane.io/smartlaneweb/startananalysis/{{ analysis }}?id={{ res.id }}" class="resource-url-analytics" target="_blank">
+{# <a href="http://smartlane.io:8088/smartlaneweb/startananalysis/{{ analysis }}?id={{ res.id }}" class="resource-url-analytics" target="_blank"> #}
+<a href="/dataset/{{ pkg.name }}/analyses">
+
 <i class="icon-bar-chart"></i>
 {{ _(analysis) }}
 </a>
