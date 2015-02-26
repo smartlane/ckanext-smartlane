@@ -2,7 +2,9 @@ import uuid
 
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import ckan.lib.navl.dictization_functions as df
 
+from ckan.lib.helpers import OrderedDict
 from logging import getLogger
 
 import urllib2, json
@@ -12,16 +14,53 @@ import urllib2, json
 get_action = toolkit.get_action
 log = getLogger(__name__)
 
-class SmartlanePlugin(plugins.SingletonPlugin):
+Missing = df.Missing
+
+def if_empty_and_geojson_set_geojson(key, data, errors, context):
+    value = data[key]
+    resource_id = data.get(key[:-1] + ('id',))
+    #if resource_id then an update
+    if (not value or value is Missing) and not resource_id:
+        url = data.get(key[:-1] + ('url',), '')
+        if url.split('.')[-1].lower() in ['geojson', 'gjson']:
+            data[key] = 'geojson'
+
+class SmartlanePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IResourceController, inherit=True)
     plugins.implements(plugins.IRoutes, inherit=True)
-    
+    plugins.implements(plugins.IDatasetForm)
+ 
     try:
         response = urllib2.urlopen("http://smartlane.io:8088/smartlaneweb/analyses/available", None, 5)
         analyses = json.loads(response.read())
     except:
         analyses = {}
+
+    #We are interested in validating resources. The dataset always exists
+    #when we add a resource, so we need to intervene at the update_package
+    #stage.
+    def update_package_schema(self):
+        # default schema in our plugin
+        schema = super(SmartlanePlugin, self).update_package_schema()
+        # take the existing resources format schema and change it
+        resources_schema = schema['resources']
+        format_schema = resources_schema['format']
+        format_schema.insert(0, if_empty_and_geojson_set_geojson)
+        resources_schema['format'] = format_schema
+        schema.update({
+            'resources': resources_schema
+        })
+        return schema
+
+    def is_fallback(self):
+        # Do this with any kind of package
+        return True;
+
+    def package_types(self):
+        # This plugin doesn't handle any special package types, it just
+        # registers itself as the default (above).
+        return []
 
     def before_map(self, route_map):
         analyses_controller = 'ckanext.smartlane.controllers:AnalysesController'
