@@ -64,7 +64,9 @@ class SmartlanePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
 
     def before_map(self, route_map):
         analyses_controller = 'ckanext.smartlane.controllers:AnalysesController'
-        route_map.connect('analyses', '/dataset/{id}/analyses', controller=analyses_controller, action='show')
+        route_map.connect('analyses', '/dataset/{id}/analyses', controller=analyses_controller, action='show', ckan_icon='bar-chart')
+        views_controller = 'ckanext.smartlane.controllers:ViewsController'
+        route_map.connect('views', '/dataset/{id}/views/{view_id}.html', controller=views_controller, action='show')
         return route_map
 
     def update_config(self, config_):

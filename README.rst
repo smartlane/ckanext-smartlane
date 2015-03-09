@@ -1,41 +1,8 @@
-.. You should enable this project on travis-ci.org and coveralls.io to make
-   these badges work. The necessary Travis and Coverage config files have been
-   generated for you.
-
-.. image:: https://travis-ci.org//ckanext-smartlane.svg?branch=master
-    :target: https://travis-ci.org//ckanext-smartlane
-
-.. image:: https://coveralls.io/repos//ckanext-smartlane/badge.png?branch=master
-  :target: https://coveralls.io/r//ckanext-smartlane?branch=master
-
-.. image:: https://pypip.in/download/ckanext-smartlane/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-smartlane/
-    :alt: Downloads
-
-.. image:: https://pypip.in/version/ckanext-smartlane/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-smartlane/
-    :alt: Latest Version
-
-.. image:: https://pypip.in/py_versions/ckanext-smartlane/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-smartlane/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/status/ckanext-smartlane/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-smartlane/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/ckanext-smartlane/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-smartlane/
-    :alt: License
-
 =============
 ckanext-smartlane
 =============
 
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
-
+.. This is the SMARTLANE extension for CKAN
 
 ------------
 Requirements
@@ -63,11 +30,15 @@ To install ckanext-smartlane:
 
      pip install ckanext-smartlane
 
-3. Add ``smartlane`` to the ``ckan.plugins`` setting in your CKAN
+3. The extension includes angularjs components. Make sure nodejs/npm is installed. Run::
+
+     npm install
+
+4. Add ``smartlane`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
-4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
+5. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
      sudo service apache2 reload
 
@@ -109,58 +80,4 @@ coverage installed in your virtualenv (``pip install coverage``) then run::
 
     nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.smartlane --cover-inclusive --cover-erase --cover-tests
 
-
----------------------------------
-Registering ckanext-smartlane on PyPI
----------------------------------
-
-ckanext-smartlane should be availabe on PyPI as
-https://pypi.python.org/pypi/ckanext-smartlane. If that link doesn't work, then
-you can register the project on PyPI for the first time by following these
-steps:
-
-1. Create a source distribution of the project::
-
-     python setup.py sdist
-
-2. Register the project::
-
-     python setup.py register
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the first release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
-
-
-----------------------------------------
-Releasing a New Version of ckanext-smartlane
-----------------------------------------
-
-ckanext-smartlane is availabe on PyPI as https://pypi.python.org/pypi/ckanext-smartlane.
-To publish a new version to PyPI follow these steps:
-
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
-
-2. Create a source distribution of the new version::
-
-     python setup.py sdist
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.2 then do::
-
-       git tag 0.0.2
-       git push --tags
+TODO: document angularjs testing

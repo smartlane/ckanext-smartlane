@@ -2,6 +2,14 @@
 node_modules
 bower_components
 
+#From Angular
+logs/*
+!.gitkeep
+tmp
+.DS_Store
+.idea
+#End from Angular
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

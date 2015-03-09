@@ -17,17 +17,25 @@ class AnalysesController(BaseController):
                    'auth_user_obj': c.userobj}
         data_dict = {'id': id}
         try:
-            c.pkg_dict = get_action('package_show')(context, data_dict)
+            c.pkg_dict = get_action('package_update')(context, data_dict)
             c.pkg = context['package']
-            try:
-                response = urllib2.urlopen("http://smartlane.io:8088/smartlaneweb/analyses/available", None, 5)
-                analyses_data = json.loads(response.read())
-                c.analyses = analyses_data['anpr']
-            except:
-                c.analyses = []
-            dataset_type = c.pkg_dict['type'] or 'dataset'
         except NotFound:
             abort(404, _('Dataset not found'))
         except NotAuthorized:
             abort(401, _('Unauthorized to read dataset %s') % id)    
         return render('package/analyses.html')
+
+class ViewsController(BaseController):
+    def show(self, id, view_id):
+        context = {'model': model, 'session': model.Session,
+                   'user': c.user or c.author, 'for_view': True,
+                   'auth_user_obj': c.userobj}
+        data_dict = {'id': id}
+        try:
+            c.pkg_dict = get_action('package_update')(context, data_dict)
+            c.pkg = context['package']
+        except NotFound:
+            abort(404, _('Dataset not found'))
+        except NotAuthorized:
+            abort(401, _('Unauthorized to read dataset %s') % id)
+        return render('package/views/' + view_id + '.html')

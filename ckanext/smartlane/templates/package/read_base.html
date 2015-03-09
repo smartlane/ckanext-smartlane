@@ -3,7 +3,8 @@
 {% block content_primary_nav %}
   {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
   {{ h.build_nav_icon('dataset_groups', _('Groups'), id=pkg.name) }}
-  <li><a href="/dataset/{{ pkg.name }}/analyses"><i class="icon-bar-chart"></i>{{ _('Analyses') }}</a></li>
+  {{ h.build_nav_icon('analyses', _('Analyses'), id=pkg.name) }}
+  {# Don't have a real route for this yet #}
   <li><a href="/dataset/{{ pkg.name }}/reports"><i class="icon-file-text"></i>{{ _('Reports') }}</a></li>
 
 {% endblock %}
