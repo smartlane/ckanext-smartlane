@@ -1,16 +1,8 @@
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
-{# {% resource 'smartlane/app/bower_components/html5-boilerplate/css/normalize.css' %} #}
-{#  {% resource 'smartlane/app/bower_components/html5-boilerplate/css/main.css' %} #}
-{% resource 'smartlane/app/app.css' %} 
-{% resource 'smartlane/app/bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.js' %}
 {% resource 'smartlane/app/bower_components/angular/angular.js' %}
-{% resource 'smartlane/app/bower_components/angular-route/angular-route.js' %}
+{% resource 'smartlane/app/bower_components/angular-translate/angular-translate.js' %}
+{% resource 'smartlane/app/controllers.js' %} 
+{% resource 'smartlane/app/translations.js' %} 
 {% resource 'smartlane/app/app.js' %}
-{% resource 'smartlane/app/view1/view1.js' %}
-{% resource 'smartlane/app/view2/view2.js' %}
-{% resource 'smartlane/app/components/version/version.js' %}
-{% resource 'smartlane/app/components/version/version-directive.js' %}
-{% resource 'smartlane/app/components/version/interpolate-filter.js' %}
 
 {% extends "package/read_base.html" %}
 
@@ -18,13 +10,16 @@
 
 {% block primary_content_inner %}
   <h1 class="hide-heading">{% block page_heading %}{{ _('Analyses') }}{% endblock %}</h1>
-  <div ng-app="myApp" class="no-js">  
-    <ul class="menu">
-      <li><a href="#/view1">view1</a></li>
-      <li><a href="#/view2">view2</a></li>
-    </ul>
-
-    <div ng-view></div>
-    <div>Angular seed app: v<span app-version></span></div>
-  </div>
+  {% raw %}
+    <div ng-app="analysesApp" class="no-js">  
+      <div ng-controller="AnalysesListCtrl">
+        <input type="checkbox" ng-model="restrict" ng-change="restrictChange(restrict)">{{ 'ANALYSES_RESTRICT_CHECKBOX' | translate }}</input>
+        <ul>
+          <li ng-repeat="analysis in analyses">
+            {{analysis.name}} ({{ analysis.datatype.join(',') }})
+          </li>      
+        </ul>
+      </div>
+    </div>
+  {% endraw %}
 {% endblock %}
