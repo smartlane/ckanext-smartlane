@@ -25,8 +25,8 @@ class AnalysesController(BaseController):
             abort(401, _('Unauthorized to read dataset %s') % id)    
         return render('package/analyses.html')
 
-class ViewsController(BaseController):
-    def show(self, id, view_id):
+class AnalysesPartialsController(BaseController):
+    def show(self, id, partial_id):
         context = {'model': model, 'session': model.Session,
                    'user': c.user or c.author, 'for_view': True,
                    'auth_user_obj': c.userobj}
@@ -38,4 +38,4 @@ class ViewsController(BaseController):
             abort(404, _('Dataset not found'))
         except NotAuthorized:
             abort(401, _('Unauthorized to read dataset %s') % id)
-        return render('package/views/' + view_id + '.html')
+        return render('package/partials/' + partial_id + '.html')

@@ -1,0 +1,9 @@
+{% raw %}
+<div>
+  <h3>{{ 'ANALYSES_NEW_TITLE' | translate }} &RightArrow; {{ 'ANALYSES_CHOOSE_TITLE' | translate }}:</h3>
+    <p ng-repeat="analysis in analyses">
+      <a class="btn" href="#new/{{analysis.name}}">{{analysis.name}}</a>  ({{ analysis.datatype.join(',') }})
+    </p>      
+  <label><input type="checkbox" ng-model="restrict" ng-change="restrictChange(restrict)" /> {{ 'ANALYSES_RESTRICT_CHECKBOX' | translate }}</label>
+</div>
+{% endraw %}

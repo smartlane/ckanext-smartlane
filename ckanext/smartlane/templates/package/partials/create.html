@@ -1,0 +1,12 @@
+{% raw %}
+<div>
+  <h3>{{ 'ANALYSES_NEW_TITLE' | translate }} &RightArrow; {{ analysistype.name }} &RightArrow; {{ 'CREATE' | translate }}</h3>
+    <form>
+    {# TODO: Help texts #}
+    <label for="input_description"><input type="text" id="input_description" placeholder="{{ analysistype.name }}" />{{ 'DESCRIPTION' | translate }}</input>
+    <p ng-repeat="parameter in analysistype.parameters">
+      <label for="input_{{parameter.name}}"><input type="text" id="input_{{parameter.name}}" placeholder="{{ parameter.default }}" />{{ parameter.title_i18 | translate }}</input>
+    </p>
+    <input type="button" ng-click="submitAnalysis()" value="{{ 'CREATE' | translate }}" />
+</div>
+{% endraw %}

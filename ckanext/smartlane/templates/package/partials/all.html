@@ -1,0 +1,12 @@
+<a href="#/all">All</a> | <a href="#/new">New</a>
+{# TODO: How to get pkg.id, see rendering of anything that uses read_base.html #}
+<input type="hidden" id="ckan-package-id" value="{{ c.pkg.id }}" />
+{% raw %}
+<div>
+  <h3>{{ 'ANALYSES_ALL_TITLE' | translate }}</h3>
+    <p ng-repeat="analysis in analyses"> 
+      <a href="#details/{{analysis.id}}">{{analysis.starttime}}: {{analysis.type}}</a><span class="label label-important">{{analysis.status}}</span>
+    </p>      
+</div>
+{% endraw %}
+{# TODO: Update docs about partials #}

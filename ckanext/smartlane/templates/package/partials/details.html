@@ -1,0 +1,27 @@
+<input type="hidden" id="ckan-package-id" value="{{ c.pkg.id }}" />
+{% raw %}
+<div>
+  <h3>{{analysis.type}} ({{analysis.status}})</h3>
+    <p>{{ 'DESCRIPTION' | translate }}: {{analysis.description}}</p>
+    <p>{{ 'STARTED' | translate }}: {{analysis.starttime}}</p>
+    <p>{{ 'FINISHED' | translate }}: {{analysis.finishtime}} ({{ 'DURATION' | translate }}: {{analysis.duration}})</p>
+    <p>{{ 'INPUT_RESOURCES' | translate }}:
+      <ul>
+        {# TODO: use url_for! #}
+        <li ng-repeat="resource in analysis.resources"><a href="/dataset/{{resource.dataset_id}}/resource/{{resource.id}}">{{resource.title}}</a></li>
+      </ul>
+    </p>
+    <p>{{ 'RESULTS' | translate }}:
+      <ul>
+        {# TODO: use url_for! #}
+        <li ng-repeat="result in analysis.results"><a href="/dataset/{{result.dataset_id}}}}/resource/{{result.id}}">{{result.title}}</a></li>
+      </ul>
+    </p>
+    <p>{{ 'VIEWS' | translate }}:
+      <ul>
+        {# TODO: use url_for! #}
+        <li ng-repeat="view in analysis.views"><a href="/dataset/{{view.dataset_id}}/resource/{{view.resource_id}}/view/{{view.id}}">{{view.title}}</a></li>
+      </ul>
+    </p>  
+</div>
+{% endraw %}

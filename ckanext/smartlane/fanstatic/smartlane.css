@@ -6,6 +6,18 @@ a:hover,
 a:focus {
 color: #333;
 }
+
+input[type=checkbox] {
+  top: 0px;
+}
+
+.slapp label::after {
+    content: "";
+}
+
+.slapp a.btn {
+    min-width: 30%;
+}
  
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
 color: #e35d21;
@@ -26,7 +38,7 @@ h1, h2, .search-form h2, h3, .orangetext a, .orangetext, .toolbar .breadcrumb a 
 .masthead, .homepage, header.account-masthead {
   background: #eeeeee url("../../../base/images/bg.png");
 }
-[role=main] {.site-footer labe
+[role=main] .site-footer { 
   min-height: 10px;
 }
 .module-content.box,.box.stats {
@@ -120,10 +132,6 @@ li[role="main"], .main {
  
 .module-content, .wrapper {
   background: #fbfbfb;
-}
- 
-.account-masthead{
-  url("../../../base/images/bg.png") repeat scroll 0% 0% #EEE;
 }
  
 .account-masthead .account ul li a {
