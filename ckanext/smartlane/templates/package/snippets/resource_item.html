@@ -81,9 +81,8 @@
 {% block resource_item_analyze_links %}
 {% for analysis in res.available_analyses %}
 <li>
-{# <a href="http://smartlane.io:8088/smartlaneweb/startananalysis/{{ analysis }}?id={{ res.id }}" class="resource-url-analytics" target="_blank"> #}
-<a href="/dataset/{{ pkg.name }}/analyses">
-
+{# TODO: API needs to give more details of analyses and we should use i18n codes and titles and so on #}
+<a href="/dataset/{{ pkg.name }}/analyses#/new/{{ analysis }}">
 <i class="icon-bar-chart"></i>
 {{ _(analysis) }}
 </a>
