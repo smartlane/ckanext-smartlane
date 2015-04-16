@@ -1,0 +1,9 @@
+{% ckan_extends %}
+
+{% block resource_view %}
+{{ super() }}
+<a class="btn pull-right" href="/smartlaneweb/report/image?viewId={{ resource_view['id'] }}&resourceId={{ resource['id'] }}&apiKey={{ c.userobj['apikey'] }}&desiredFileNamePrefix={{ resource_view['title'] }}">
+      <i class="icon-download"></i>
+      {% trans %}Save Image{% endtrans %}
+</a>
+{% endblock %}
