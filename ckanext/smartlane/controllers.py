@@ -17,7 +17,7 @@ class AnalysesController(BaseController):
                    'auth_user_obj': c.userobj}
         data_dict = {'id': id}
         try:
-            c.pkg_dict = get_action('package_update')(context, data_dict)
+            c.pkg_dict = get_action('package_show')(context, data_dict)
             c.pkg = context['package']
         except NotFound:
             abort(404, _('Dataset not found'))
@@ -32,7 +32,7 @@ class AnalysesPartialsController(BaseController):
                    'auth_user_obj': c.userobj}
         data_dict = {'id': id}
         try:
-            c.pkg_dict = get_action('package_update')(context, data_dict)
+            c.pkg_dict = get_action('package_show')(context, data_dict)
             c.pkg = context['package']
         except NotFound:
             abort(404, _('Dataset not found'))
