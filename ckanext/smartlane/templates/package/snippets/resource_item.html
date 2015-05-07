@@ -43,6 +43,22 @@
           {% endif %}
         </a>
       </li>
+      {% if res.format == 'GeoJSON' and not pkg.private %}
+      <li>
+        <a href="http://geojson.io/#data=data:text/x-url,{{ res.url }}" target="_blank">
+          <i class="icon-share"></i>
+          {{ _('Visualize (geojson.io)') }}
+        </a>
+      </li>
+      {% endif %}
+      {% if res.format in ('GeoJSON', 'CSV', 'TAB', 'TSV', 'SHAPE', 'KML', 'KMZ', 'XLS', 'XLSX', 'GPX', 'OSM', 'ODS') and not pkg.private %}
+      <li>
+        <a href="http://oneclick.cartodb.com/?file={{ res.url }}&provider=smartlane.io&logo=https://smartlane.io/base/images/smartlane.png" target="_blank">
+          <i class="icon-share"></i>
+          {{ _('Visualize (cartoDB)') }}
+        </a>
+      </li>
+      {% endif %}
       {% if res.url and h.is_url(res.url) %}
       <li>
         <a href="{{ res.url }}" class="resource-url-analytics" target="_blank">
