@@ -12,7 +12,9 @@ analysesAppServices.factory('Analyses', ['$resource',
 
 analysesAppServices.factory('ProjectAnalyses', ['$resource',
   function($resource) {
-    return $resource('/smartlaneweb/projects/:projectid/analyses/:analysisjobid');
+    return $resource('/smartlaneweb/projects/:projectid/analyses/:analysisjobid', {}, {
+      query: {method: 'GET'}
+    });
   }
 ]);
 

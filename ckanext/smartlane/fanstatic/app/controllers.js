@@ -41,8 +41,10 @@ analysisAppControllers.controller('AnalysesCreateCtrl', ['$scope', 'Analyses', '
     $scope.submitAnalysis = function() {
       //TODO: submit somewhere, bind submit enabled/visible and some label to result... refresh to list???
       var newjob = new ProjectAnalyses();
+      newjob.type = "traveltime";
       //new.job.property = something out of the form, etc.
-      newjob.$save().then(function() {
+      var pkg_id = document.getElementById('ckan-package-id').value; 
+      newjob.$save({projectid: pkg_id}).then(function() {
         console.log('posted');
         $location.path('/jobs');       
       });
