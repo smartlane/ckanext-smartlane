@@ -2,7 +2,8 @@
 {% set url_action = 'resource_edit' if url_is_edit and can_edit else 'resource_read' %}
 {% set url = h.url_for(controller='package', action=url_action, id=pkg.name, resource_id=res.id) %}
 {% if 'parent' in res %}
-  <ul>
+  {# Until this has some use, hiding #}
+  <ul style="visibility: hidden; height: 0px; ">
   <li class="resource-item" style="list-style: none;" data-id="{{ res.id }}">&#x25BA;
 {% else %}
   <li class="resource-item" data-id="{{ res.id }}">

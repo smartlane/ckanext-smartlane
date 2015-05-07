@@ -90,7 +90,8 @@ class SmartlanePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
             data['parent'] = pkg_dict['id']
             #Change format to make sure datapusher doesn't process it
             data['name'] = 'SMARTLANE Optimized - ' + pkg_dict['name']
-            get_action('resource_create')(context, data)
+            #TODO: temporarily disabling
+            #get_action('resource_create')(context, data)
 
     def after_show(self, pkg_dict):
         if 'type_id' in pkg_dict and pkg_dict['type_id'] in self.analyses:
