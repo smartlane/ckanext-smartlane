@@ -5,3 +5,9 @@
 
   {% resource 'smartlane/smartlane.css' %}
 {% endblock %}
+
+{% block scripts %}
+  <script>L_PREFER_CANVAS = true;</script>
+
+  {{ super() }}
+{% endblock %}
