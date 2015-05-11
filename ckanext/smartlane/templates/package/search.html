@@ -1,0 +1,10 @@
+{% ckan_extends %}
+{% block breadcrumb_content %}
+  <li class="active">{{ h.nav_link(_('All datasets'), controller='package', action='search', highlight_actions = 'new index') }}</li>
+{% endblock %}
+
+{% block form %}
+{% endblock %}
+
+{% block package_search_results_api %}
+{% endblock %}

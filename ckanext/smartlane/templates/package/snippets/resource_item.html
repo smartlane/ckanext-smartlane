@@ -86,8 +86,9 @@
   {% endif %}
   {% endblock %}
   {% block resource_item_analyze %}
+{# Temporarily disabling
 {% if not url_is_edit and res.available_analyses|length > 0 %}
-{# There are so many customizations to the dropdown buttons compared to standard bootstrap, that it isn't worth the effort trying to join the buttons together nicely as shown here: http://getbootstrap.com/components/#btn-groups-nested. In fact multiple buttons here seems to be explicitly not wanted, hence the nasty inline positioning #}
+# There are so many customizations to the dropdown buttons compared to standard bootstrap, that it isn't worth the effort trying to join the buttons together nicely as shown here: http://getbootstrap.com/components/#btn-groups-nested. In fact multiple buttons here seems to be explicitly not wanted, hence the nasty inline positioning #
 <div class="dropdown btn-group" style="right: 140px;">
 <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 <i class="icon-bar-chart"></i>
@@ -98,7 +99,7 @@
 {% block resource_item_analyze_links %}
 {% for analysis in res.available_analyses %}
 <li>
-{# TODO: API needs to give more details of analyses and we should use i18n codes and titles and so on #}
+# TODO: API needs to give more details of analyses and we should use i18n codes and titles and so on #
 <a href="/dataset/{{ pkg.name }}/analyses#/new/{{ analysis }}">
 <i class="icon-bar-chart"></i>
 {{ _(analysis) }}
@@ -109,6 +110,7 @@
 </ul>
 </div>
 {% endif %}
+#}
 {% endblock %}
 </li>
 

@@ -3,7 +3,7 @@
   <div class="container">
     {% block footer_content %}
     <div class="row">
-      <div class="span4 footer-links">
+      <div class="span1 footer-links">
         {% block footer_nav %}
           <ul class="unstyled">
             {% block footer_links %}
@@ -14,16 +14,21 @@
               {% set api_url = 'http://docs.ckan.org/en/{0}/api/'.format(g.ckan_doc_version) %}
               {# <li><a href="{{ api_url }}">{{ _('API') }}</a></li> #}
             {% endblock %}
+            {# Until we have translations...
             {% block footer_lang %}
               {% snippet "snippets/language_selector.html" %}
             {% endblock %}
+            #}
           </ul>
         {% endblock %}
       </div>
-      <div class="span8 attribution">
+      <div class="span10 attribution">
         {% block footer_attribution %}
           <p class="blacktext">{% trans %}<span class="orangetext"><strong><a href="http://smartlane.de">SMARTLANE</a></strong></span> wird innerhalb des EXIST-Gründungsvorhabens "Tapestry" entwickelt. Die Datenplattform basiert auf dem Open Source Projekt <span class="orangetext"><strong><a class="orangetext" href="http://ckan.org">CKAN</a></strong>.</span>{% endtrans %}</p>
         {% endblock %}
+      </div>
+      <div class="span1">
+      &nbsp;
       </div>
     </div>
     {% endblock %}
