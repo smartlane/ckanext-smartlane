@@ -1,6 +1,6 @@
 {% ckan_extends %}
 
-{% set types = [('ANPR', 'anpr'), (_('Detector'), 'detector'), (_('Object locations'), 'geo'), ('FCD', 'fcd'), ('Map', 'map')] %}
+{% set types = [(_('Detector (Interval'), 'detector'), (_('Map Objects'), 'geo'), (_('Detector (Raw'), 'detector_raw'), ('ANPR log', 'anpr'), ('Map', 'map'), ('FCD/GPS Tracks', 'fcd')] %}
 
 {% block basic_fields %}
 
