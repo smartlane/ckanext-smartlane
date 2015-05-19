@@ -1,0 +1,27 @@
+{% ckan_extends %}
+
+{% block flash %}
+  <div class="flash-messages">
+  {% if h.organizations_available() | length == 0 %}
+    <div class="alert alert-success fade in">
+      Like what you see? <a href="http://www.smartlane.de/signup/">Register now </a> {# {{ request.GET }} #}for free to manage your own data and create visualizations like these.</a>
+    </div>
+   {% endif %}
+   {% block flash_inner %}
+     {{ super() }}              
+   {% endblock %}
+ </div>
+{% endblock %}
+
+{% block resource_actions_inner %}
+  {% if h.check_access('package_update', {'id':pkg.id }) %}
+    <li>{% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}</li>
+  {% endif %}
+  {# Download etc. button removed #}
+  {% if 'datastore' in g.plugins %}
+    <li>{% snippet 'package/snippets/data_api_button.html', resource=res, datastore_root_url=c.datastore_api %}</li>
+  {% endif %}
+{% endblock %}
+
+{% block resource_additional_information %}
+{% endblock %}

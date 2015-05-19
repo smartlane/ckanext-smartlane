@@ -1,8 +1,23 @@
+.leaflet-container .leaflet-control-attribution {
+  background: transparent;
+}
+.alert .close {
+  visibility: hidden;
+}
+
+.btn {
+  margin-left: 10px;
+}
+
+.controls > .btn {
+  margin-left: 0px;
+}
+
 .wrapper {
   border: 0px;
 }
 a {
-color: #111;
+color: #e35d21;
 }
  
 a:hover,
@@ -61,10 +76,12 @@ a:hover, a:focus {
   text-decoration: none;
 }
  
- 
- 
-.homepage .module-search .module-content {
+.homepage .module-search {
   background: #959595;
+}
+
+.module-content {
+  background: #ffffff;
 }
  
 .homepage .module-search .tags {
@@ -133,8 +150,8 @@ li[role="main"], .main {
   padding-right: 10px;
 }
  
-.module-content, .wrapper {
-  background: #fbfbfb;
+.wrapper {
+  background: #ffffff;
 }
  
 .account-masthead .account ul li a {
@@ -160,6 +177,7 @@ li[role="main"], .main {
 }
  
 .btn-primary {
+  margin-left: 0px;
   background-image: linear-gradient(to bottom,#999999,#555555);
   background-color: #999999;
   background-image: -moz-linear-gradient(top, #999999, #555555);
