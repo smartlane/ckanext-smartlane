@@ -16,8 +16,34 @@
 .wrapper {
   border: 0px;
 }
-a {
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffffff;
+  background-color: #555555;
+  *background-color: #0D0D0D;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #ffffff \9;
+}
+
+a, a:visited {
 color: #e35d21;
+}
+
+a.btn, a:visited.btn {
+color: #333333;
+}
+
+a.label, a:visited.label, a.btn-primary, a:visited.btn-primary {
+color: #ffffff;
 }
  
 a:hover,
@@ -190,19 +216,4 @@ li[role="main"], .main {
   border-color: transparent;
   *background-color: #555555;
 }
- 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-.btn-primary[disabled] {
-  color: #ffffff;
-  background-color: #555555;
-  *background-color: #0D0D0D;
-}
- 
-.btn-primary:active,
-.btn-primary.active {
-  background-color: #ffffff \9;
-}
+

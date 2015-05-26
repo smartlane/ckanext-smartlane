@@ -11,14 +11,14 @@
 
   {% block resource_item_title %}
   <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
-    {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
+    {{ h.resource_display_name(res) | truncate(80) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
     {{ h.popular('views', res.tracking_summary.total, min=10) }}
   </a>
   {% endblock %}
   {% block resource_item_description %}
     <p class="description">
       {% if res.description %}
-        {{ h.markdown_extract(res.description, extract_length=80) }}
+        {{ h.markdown_extract(res.description, extract_length=120) }}
       {% endif %}
     </p>
   {% endblock %}
