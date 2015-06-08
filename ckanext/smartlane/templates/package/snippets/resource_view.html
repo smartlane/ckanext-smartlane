@@ -1,11 +1,10 @@
 {% ckan_extends %}
-
 {% block resource_view %}
 {% if not c.userobj %}
 <a class="btn pull-right" href="http://www.smartlane.de/signup/"><i class="icon-user"></i>Register to create your own!</a> {# {{ request.GET }} #}
 {% endif %}
 {# What you see should be what you get, and this is not possible with these dynamic visualizations #}
-{% if (resource['format'] != 'WMS') and (resource['format'] != 'WFS') and (resource_view.view_type != 'recline_view') %}
+{% if (resource['format'] not in ('WMS', 'WFS', 'PDF')) and (resource_view.view_type != 'recline_view') %}
 <a class="btn pull-right" href="/smartlaneweb/report/image?viewId={{ resource_view['id'] }}&resourceId={{ resource['id'] }}&datasetId={{ resource['package_id'] }}&apiKey={{ c.userobj['apikey'] }}&desiredFileNamePrefix={{ resource_view['title'] }}">
   <i class="icon-download"></i>
   {% trans %}Save Image{% endtrans %}

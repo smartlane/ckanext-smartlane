@@ -7,7 +7,6 @@
       <div class="module-content">
         <div class="actions">
           {% block resource_actions %}
-            {{ super() }}
             {% block resource_actions_inner %}
               {% if h.check_access('package_update', {'id':pkg.id }) %}
                 <li>{% link_for _('Manage'), controller='package', action='resource_edit', id=pkg.name, resource_id=res.id, class_='btn', icon='wrench' %}</li>

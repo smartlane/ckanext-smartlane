@@ -1,0 +1,18 @@
+{% ckan_extends %}
+
+{% block heading_private %}
+    {% if package.private %}
+      <span class="dataset-private label label-inverse">
+        <i class="icon-lock"></i>
+          {{ _('Private') }}
+      </span>
+    {% else %}
+      <span class="dataset-private label label-inverse">
+        <i class="icon-globe"></i>
+          {{ _('Public') }}
+      </span>
+    {% endif %}  
+{% endblock %}
+
+{% block resources_inner %}
+{% endblock %}
