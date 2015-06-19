@@ -72,6 +72,11 @@
         </a>
       </li>
       {% endif %}
+      {% if res.datastore_active %}
+      <li>
+        <a href="/api/action/datastore_search?resource_id={{ res.id }}&q=" target="_blank"><i class="icon-cloud-download"></i>{{ _('Export from DB') }}</a>
+      </li>
+      {% endif %}
       {% if can_edit %}
       <li>
         <a href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
