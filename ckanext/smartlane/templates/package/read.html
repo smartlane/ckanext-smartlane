@@ -29,6 +29,26 @@
         {{ c.pkg_notes_formatted }}
       </div>
     {% endif %}
+    {# Attention: demo purposes only! #}
+    {% if pkg.name == 'mobiltum-race' %}
+    <div class="container">
+        {% for feature_row in h.get_homepage_resource_views() | batch(2) %}
+          <div class="row-fluid">
+              {% for feature in feature_row %}
+              <div class="span6" style="padding-right: 50px;">
+              <h2 style="margin-bottom:0; position: absolute;">{{ feature['resource_view']['title'] }}</h2>
+                      {% snippet 'package/snippets/resource_view.html',
+                          resource_view = feature['resource_view'],
+                          resource = feature['resource'],
+                          package = feature['package'],
+                          simple = True
+                      %}
+              </div>
+              {% endfor %}
+          </div>
+        {% endfor %}
+    </div>
+    {% endif %}
   {% endblock %}
 {% endblock %}
 
