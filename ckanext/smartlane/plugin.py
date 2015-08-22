@@ -32,7 +32,7 @@ class SmartlanePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IDatasetForm)
  
     try:
-        response = urllib2.urlopen("http://smartlane.io:8088/smartlaneweb/analyses/available", None, 5)
+        response = urllib2.urlopen("http://127.0.0.1/smartlaneweb/analyses/available", None, 5)
         analyses = json.loads(response.read())
     except:
         analyses = {}
@@ -74,24 +74,25 @@ class SmartlanePlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'smartlane')
 
-    def before_create(self, context, pkg_dict):
-        if 'parent' in pkg_dict:
+    #I think this has been totally cancelled now
+    #def before_create(self, context, pkg_dict):
+    #    if 'parent' in pkg_dict:
             #If this is the created 'child' resource, prevent it being processed
-            pkg_dict['url'] = 'http://www.smartlane.de/theme/img/logo.png'
-            pkg_dict['format'] = 'EMPTY'
+    #        pkg_dict['url'] = 'http://www.smartlane.de/theme/img/logo.png'
+    #        pkg_dict['format'] = 'EMPTY'
 
-    def after_create(self, context, pkg_dict):
-        if 'parent' not in pkg_dict:
-            #Create a child resource for the optimisation
-            data = pkg_dict.copy()
-            #Change the ID to something else
-            #Set parent to just created resource
-            data['id'] = uuid.uuid4()
-            data['parent'] = pkg_dict['id']
-            #Change format to make sure datapusher doesn't process it
-            data['name'] = 'SMARTLANE Optimized - ' + pkg_dict['name']
-            #TODO: temporarily disabling
-            #get_action('resource_create')(context, data)
+    #def after_create(self, context, pkg_dict):
+    #    if 'parent' not in pkg_dict:
+    #        #Create a child resource for the optimisation
+    #        data = pkg_dict.copy()
+    #        #Change the ID to something else
+    #        #Set parent to just created resource
+    #        data['id'] = uuid.uuid4()
+    #        data['parent'] = pkg_dict['id']
+    #        #Change format to make sure datapusher doesn't process it
+    #        data['name'] = 'SMARTLANE Optimized - ' + pkg_dict['name']
+    #        #TODO: temporarily disabling
+    #        #get_action('resource_create')(context, data)
 
     def after_show(self, pkg_dict):
         if 'type_id' in pkg_dict and pkg_dict['type_id'] in self.analyses:

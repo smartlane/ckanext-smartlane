@@ -27,7 +27,7 @@
   <div class="dropdown btn-group">
     <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       <i class="icon-compass"></i>
-      {{ _('Explore') }}
+      {{ _('Tools') }}
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
@@ -91,21 +91,24 @@
   {% endif %}
   {% endblock %}
   {% block resource_item_analyze %}
-{# Temporarily disabling
-{% if not url_is_edit and res.available_analyses|length > 0 %}
-# There are so many customizations to the dropdown buttons compared to standard bootstrap, that it isn't worth the effort trying to join the buttons together nicely as shown here: http://getbootstrap.com/components/#btn-groups-nested. In fact multiple buttons here seems to be explicitly not wanted, hence the nasty inline positioning #
-<div class="dropdown btn-group" style="right: 140px;">
+
+{% if not url_is_edit and res.available_analyses|length > 0 and c.userobj %}
+{# There are so many customizations to the dropdown buttons compared to standard bootstrap, that it isn't worth the effort trying to join the buttons together nicely as shown here: http://getbootstrap.com/components/#btn-groups-nested. In fact multiple buttons here seems to be explicitly not wanted, hence the nasty inline positioning #}
+<div class="dropdown btn-group" style="right: 280px;">
 <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 <i class="icon-bar-chart"></i>
-{{ _('Analyze') }}
+{{ _('Insights') }}
 <span class="caret"></span>
 </a>
 <ul class="dropdown-menu">
 {% block resource_item_analyze_links %}
 {% for analysis in res.available_analyses %}
 <li>
-# TODO: API needs to give more details of analyses and we should use i18n codes and titles and so on #
-<a href="/dataset/{{ pkg.name }}/analyses#/new/{{ analysis }}">
+{# TODO: API needs to give more details of analyses and we should use i18n codes and titles and so on #}
+{# This is the old link to the angular app for analysis parameterization
+<a href="/dataset/{{ pkg.name }}/analyses#/new/{{ analysis }}"> #}
+{# We couple analysis names with view names - the view takes care of any needed analysis #}
+<a href="/dataset/{{ pkg.name }}/resource/{{ res.id }}/new_view?view_type={{ analysis }}">
 <i class="icon-bar-chart"></i>
 {{ _(analysis) }}
 </a>
@@ -115,7 +118,26 @@
 </ul>
 </div>
 {% endif %}
-#}
+
+{% if not url_is_edit and c.userobj%} 
+{# There are so many customizations to the dropdown buttons compared to standard bootstrap, that it isn't worth the effort trying to join the buttons together nicely as shown here: http://getbootstrap.com/components/#btn-groups-nested. In fact multiple buttons here seems to be explicitly not wanted, hence the nasty inline positioning #}
+<div class="dropdown btn-group" style="right: 120px;">
+<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+<i class="icon-desktop"></i>
+{{ _('Create views') }}
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+{% block resource_item_view_links %}
+{% for option in h.get_allowed_view_types(res, pkg)  %}
+        {% set url = h.url_for(controller='package', action='edit_view', id=pkg.name, resource_id=res.id, view_type=option[0]) %}
+        <li><a href="{{ url }}"><i class="icon-{{ option[2] }}"></i> {{ option[1] }}</a></li>
+{% endfor %}
+{% endblock %}
+</ul>
+</div>
+{% endif %}
+
 {% endblock %}
 </li>
 
