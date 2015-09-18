@@ -18,7 +18,7 @@
   {% block resource_item_description %}
     <p class="description">
       {% if res.description %}
-        {{ h.markdown_extract(res.description, extract_length=120) }}
+        {{ h.markdown_extract(res.description, extract_length=75) }}
       {% endif %}
     </p>
   {% endblock %}
@@ -117,6 +117,12 @@
 {% endblock %}
 </ul>
 </div>
+{% else %}
+<div class="btn-group" style="right: 280px;">
+    <button class="btn btn-primary dropdown-toggle disabled" data-toggle="dropdown"><i class="icon-bar-chart"></i> {{ _('Insights') }}</i> <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    </ul>
+</div>
 {% endif %}
 
 {% if not url_is_edit and c.userobj%} 
@@ -135,6 +141,12 @@
 {% endfor %}
 {% endblock %}
 </ul>
+</div>
+{% else %}
+<div class="btn-group" style="right: 120px;">
+    <button class="btn btn-primary dropdown-toggle disabled" data-toggle="dropdown"><i class="icon-desktop"></i> {{ _('Create views') }}</i> <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    </ul>
 </div>
 {% endif %}
 
