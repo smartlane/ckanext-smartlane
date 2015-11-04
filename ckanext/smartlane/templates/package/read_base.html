@@ -1,17 +1,17 @@
 {% ckan_extends %}
-
+{#
 {% block page_header %}
 {% endblock %}
 
 {% block content_action %}
 {% endblock %}
-
-{# Temporarily disabling as the developer knows the links
+#}
 {% block content_primary_nav %}
   {{ h.build_nav_icon('dataset_read', _('Dataset'), id=pkg.name) }}
-  {{ h.build_nav_icon('dataset_groups', _('Groups'), id=pkg.name) }}
-  {{ h.build_nav_icon('analyses', _('Analyses'), id=pkg.name) }}
+{#  {{ h.build_nav_icon('dataset_groups', _('Groups'), id=pkg.name) }} #}
+  {{ h.build_nav_icon('dataset_showcase_list', _('Apps'), id=pkg.name, icon='tablet') }}
+{#  {{ h.build_nav_icon('analyses', _('Analyses'), id=pkg.name) }}
   # Don't have a real route for this yet #
   <li><a href="/dataset/{{ pkg.name }}/reports"><i class="icon-file-text"></i>{{ _('Reports') }}</a></li>
-{% endblock %}
 #}
+{% endblock %}

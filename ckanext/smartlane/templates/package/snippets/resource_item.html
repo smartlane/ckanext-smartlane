@@ -11,6 +11,20 @@
 
   {% block resource_item_title %}
   <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
+    
+    {% if res.db %}
+      <span class="dataset-private label label-inverse" style="background-color: #2db55d;">
+        <i class="icon-external-link-sign"></i>
+        {{ _('External DB') }}
+      </span>
+    {% endif %}
+    {% if res.s3bucket %}
+      <span class="dataset-private label label-inverse" style="background-color: #55a1ce;">
+        <i class="icon-bolt"></i>
+        {{ _('Accumulating') }}
+      </span>
+    {% endif %}
+
     {{ h.resource_display_name(res) | truncate(80) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
     {{ h.popular('views', res.tracking_summary.total, min=10) }}
   </a>
@@ -18,7 +32,7 @@
   {% block resource_item_description %}
     <p class="description">
       {% if res.description %}
-        {{ h.markdown_extract(res.description, extract_length=120) }}
+        {{ h.markdown_extract(res.description, extract_length=75) }}
       {% endif %}
     </p>
   {% endblock %}
@@ -72,9 +86,25 @@
         </a>
       </li>
       {% endif %}
+      {% if res.s3bucket %}
+      <li>
+          <a href="https://console.aws.amazon.com/s3/home?region=eu-central-1&bucket={{ res.s3bucket }}" class="resource-url-analytics" target="_blank">
+            <i class="icon-folder-open"></i>
+            {{ _('View archived files') }}
+          </a>
+      </li>
+      {% endif %}
+      {% if res.transform %}
+      <li> 
+        <a href="https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/{{ res.transform }}" class="resource-url-analytics" target="_blank">
+          <i class="icon-code"></i>
+          {{ _('View/Edit Transform') }}
+        </a>
+      </li>
+      {% endif %}
       {% if res.datastore_active %}
       <li>
-        <a href="/api/action/datastore_search?resource_id={{ res.id }}&q=" target="_blank"><i class="icon-cloud-download"></i>{{ _('Export from DB') }}</a>
+        <a href="/datastore/dump/{{ res.id }}" target="_blank"><i class="icon-cloud-download"></i>{{ _('Export from DB') }}</a>
       </li>
       {% endif %}
       {% if can_edit %}
@@ -117,6 +147,12 @@
 {% endblock %}
 </ul>
 </div>
+{% else %}
+<div class="btn-group" style="right: 280px;">
+    <button class="btn btn-primary dropdown-toggle disabled" data-toggle="dropdown"><i class="icon-bar-chart"></i> {{ _('Insights') }}</i> <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    </ul>
+</div>
 {% endif %}
 
 {% if not url_is_edit and c.userobj%} 
@@ -135,6 +171,12 @@
 {% endfor %}
 {% endblock %}
 </ul>
+</div>
+{% else %}
+<div class="btn-group" style="right: 120px;">
+    <button class="btn btn-primary dropdown-toggle disabled" data-toggle="dropdown"><i class="icon-desktop"></i> {{ _('Create views') }}</i> <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    </ul>
 </div>
 {% endif %}
 

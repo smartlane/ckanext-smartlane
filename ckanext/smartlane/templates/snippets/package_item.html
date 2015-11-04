@@ -4,14 +4,28 @@
     {% if package.private %}
       <span class="dataset-private label label-inverse">
         <i class="icon-lock"></i>
-          {{ _('Private') }}
+        {{ _('Private') }}
       </span>
     {% else %}
       <span class="dataset-private label label-inverse">
         <i class="icon-globe"></i>
-          {{ _('Public') }}
+        {{ _('Public') }}
       </span>
-    {% endif %}  
+    {% endif %}
+    {% for item in package.resources %}
+      {% if item.db %}
+        <span class="dataset-private label label-inverse" style="background-color: #2db55d;">
+          <i class="icon-external-link-sign"></i>
+          {{ _('External DB') }}
+        </span>
+      {% endif %}
+      {% if item.s3bucket %}
+        <span class="dataset-private label label-inverse" style="background-color: #55a1ce;">
+          <i class="icon-bolt"></i>
+          {{ _('Accumulating') }}
+        </span>
+      {% endif %}
+    {% endfor %}    
 {% endblock %}
 
 {% block resources_inner %}

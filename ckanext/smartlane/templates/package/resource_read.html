@@ -28,7 +28,7 @@
               {% endif %}
               {% if res.datastore_active %}
                 <li>
-                  <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="/api/action/datastore_search?resource_id={{ res.id }}&q=" target="_blank"><i class="icon-cloud-download"></i>{{ _('Export from DB') }}</a>
+                  <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="/datastore/dump/{{ res.id }}" target="_blank"><i class="icon-cloud-download"></i>{{ _('Export from DB') }}</a>
                 </li>
                 {# Removing for now...
                 <li>{% snippet 'package/snippets/data_api_button.html', resource=res, datastore_root_url=c.datastore_api %}</li>

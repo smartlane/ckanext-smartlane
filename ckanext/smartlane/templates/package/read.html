@@ -3,9 +3,9 @@
 {% block package_description %}
   <h1>
   {% block page_heading %}
-    {% if h.check_access('package_update', {'id':pkg.id }) %}
+    {# {% if h.check_access('package_update', {'id':pkg.id }) %}
       {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn pull-right', icon='wrench' %}
-    {% endif %}
+    {% endif %} #}
     {% if pkg.private %}
       <span class="dataset-private label label-inverse pull-right">
         <i class="icon-lock"></i>

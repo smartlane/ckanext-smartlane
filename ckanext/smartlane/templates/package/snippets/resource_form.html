@@ -35,6 +35,15 @@ upload_label=_('File'), url_label=_('URL')) }}
       {% endfor %}
       </select> 
   {% endblock %}
+
+ {% block metadata_fields %}
+      {{ form.checkbox('accumulate', id='field-accumulate', label=_('Accumulate data?'), value=data.dynamic, error=errors.dynamic, classes=[]) }}
+
+      {{ form.input('s3bucket', id='field-s3bucket', label=_('Intermediary S3 bucket'), placeholder=_('eg. mybucket'), value=data.s3bucket, error=errors.s3bucket, classes=[]) }}
+
+      {{ form.input('transform', id='field-transform', label=_('Lambda Transform'), placeholder=_('eg. getnewevents'), value=data.transform, error=errors.transform, classes=[]) }}
+
+  {% endblock %}
   
 {% endblock %}
 

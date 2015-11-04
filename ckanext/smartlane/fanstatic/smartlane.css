@@ -1,3 +1,9 @@
+.resource-item:nth-child(even) {background: #eee}
+.resource-item:nth-child(odd) {background: #ddd}
+
+.resource-item p {
+  margin-right: 400px;
+}
 
 .dataset-private {
     text-transform: none;
