@@ -3,11 +3,15 @@
     <center>
       <br><br><br><br>
         <img src="/static/logo.png" id="logo" /><br><br>
-        We are alpha testing. Want to help? Click on <a href="http://www.smartlane.de/signup">{% trans %}register{% endtrans %}</a> to get an account.<br>Not sure? Check out what SMARTLANE can do for you on our <a href="http://www.smartlane.de">website</a> or by checking out our <a href="/dataset">examples</a>.
+        {% set myurl = h.full_current_url() %}
+        {% if not myurl == "https://customer.smartlane.io/" %}We are alpha testing. Want to help? Click on <a href="http://www.smartlane.de/signup">{% trans %}register{% endtrans %}</a> to get an account.<br>Not sure? Check out what SMARTLANE can do for you on our <a href="http://www.smartlane.de">website</a> or by checking out our <a href="/dataset">examples</a>.
         <br><br>
-        <a class="btn btn-primary" href="/dataset">{% trans %}Examples{% endtrans %}</a>
+        {% endif %}
+        <a class="btn btn-primary" {% if myurl == "https://customer.smartlane.io/" %}target="_blank" {% endif %}href="https://smartlane.io/dataset">{% trans %}Examples{% endtrans %}{% if myurl == "https://customer.smartlane.io/" %} (smartlane.io){% endif %}</a>
+        {% if not c.userobj %}
         <a class="btn btn-primary" href="http://www.smartlane.de/signup">{% trans %}Register{% endtrans %}</a>
         <a class="btn btn-primary" href="/user/login">{% trans %}Log in{% endtrans %}</a>
+        {% endif %}
       <br><br><br><br>
     </center>
   </div>
