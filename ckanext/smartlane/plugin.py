@@ -4,7 +4,6 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.navl.dictization_functions as df
 
-from ckan.lib.helpers import OrderedDict
 from logging import getLogger
 
 import urllib2, json

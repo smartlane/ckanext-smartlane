@@ -86,7 +86,7 @@
         </a>
       </li>
       {% endif %}
-      {% if res.s3bucket %}
+      {% if res.s3bucket and c.userobj %}
       <li>
           <a href="https://console.aws.amazon.com/s3/home?region=eu-central-1&bucket={{ res.s3bucket }}" class="resource-url-analytics" target="_blank">
             <i class="icon-folder-open"></i>
@@ -94,7 +94,7 @@
           </a>
       </li>
       {% endif %}
-      {% if res.transform %}
+      {% if res.transform and c.userobj %}
       <li> 
         <a href="https://eu-west-1.console.aws.amazon.com/lambda/home?region=eu-west-1#/functions/{{ res.transform }}" class="resource-url-analytics" target="_blank">
           <i class="icon-code"></i>
